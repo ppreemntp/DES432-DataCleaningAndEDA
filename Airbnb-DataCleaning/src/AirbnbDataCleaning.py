@@ -52,15 +52,13 @@ print(airbnb[
     (airbnb["number_of_reviews"] == 0) &
     (airbnb["last_review"].isnull())
 ].shape)
-#ใข่ conclude ได้เลยว่า missing values ในสอง column นี้คือยังไม่เคยมีคนรีวิวเลย เราสามารถเติม null values พวกนี้เป็นค่าเฉลี่ยเพื่อ analyst ในอนาคตจะได้หาค่าเฉลี่ยของทั้ง dataset ได้
-
-
+#ใช่ conclude ได้เลยว่า missing values ในสอง column นี้คือยังไม่เคยมีคนรีวิวเลย เราสามารถเติม null values พวกนี้เป็นค่าเฉลี่ยเพื่อ analyst ในอนาคตจะได้หาค่าเฉลี่ยของทั้ง dataset ได้
 print("<--------------------------------------------------------------->")
 
 print("<<<<< Check Rediculous Pricing >>>>>")# Check for rediculously low or high prices ราคาควรเหมาะสม
 print("Min price:", airbnb["price"].min())
 print("Max price:", airbnb["price"].max())
-# มีคนตั้งราคาเป็น 0 เราก็เป็นเชอล็อกโฮมแม่งเลย
+# มีคนตั้งราคาเป็น 0 เราก็เรียกดูเพิ่ม
 pd.set_option("display.max_columns", None)
 pd.set_option("display.max_colwidth", None)
 pd.set_option("display.width", None)
@@ -153,4 +151,5 @@ upper = Q3 + 1.5 * IQR
 lower = Q1 - 1.5 * IQR
 outliers = airbnb[(airbnb["price"] < lower) | (airbnb["price"] > upper)]
 print("Number of price outliers:", outliers.shape[0])
+
 print("<--------------------------------------------------------------->")
