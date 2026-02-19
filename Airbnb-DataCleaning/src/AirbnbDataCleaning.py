@@ -151,5 +151,15 @@ upper = Q3 + 1.5 * IQR
 lower = Q1 - 1.5 * IQR
 outliers = airbnb[(airbnb["price"] < lower) | (airbnb["price"] > upper)]
 print("Number of price outliers:", outliers.shape[0])
-
 print("<--------------------------------------------------------------->")
+
+print("<<<<< Cleaning Process >>>>>")# Fill missing value with 0 on reviews_per_month column.
+airbnb["reviews_per_month"] = airbnb["reviews_per_month"].fillna(0)
+print(airbnb.isnull().sum())
+
+# Drop listing with price equal to 0.
+airbnb = airbnb[airbnb["price"] > 0]
+airbnb = airbnb.drop(airbnb[airbnb["price"] == 0].index)
+print(airbnb.isnull().sum())
+print("<--------------------------------------------------------------->")
+
